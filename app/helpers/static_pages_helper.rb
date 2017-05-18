@@ -2,9 +2,10 @@ module StaticPagesHelper
   def flipcoin
     @coin = rand.round
     if @coin == 1
-      result = "heads"
+      @result = "heads"
     else 
-      result = "tails"
+      @result = "tails"
     end
   end
+
 end
