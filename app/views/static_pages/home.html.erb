@@ -1,7 +1,17 @@
-<h1><%= Faker::Hipster.word.capitalize %> <%= Faker::Hipster.word.capitalize %></h1>
-
+<p><%= checkforcookie %></p>
 <p>You flipped a coin and got <strong><%= flipcoin %></strong></p>
 <hr>
-<p><%= Faker::ChuckNorris.fact %></p>
+
+<% consecutives %>
+<% if cookies[:consmatches].to_i == 0 %>
+  <p>No consecutive results</p> 
+<% else %>
+  <p>Got <strong><%= cookies[:lastresult] %></strong> for 
+  <%= cookies[:consmatches] %> consecutive 
+  <%= "time".pluralize(cookies[:consmatches].to_i) %></times></p>
+<% end %>
+
 <hr>
-<p><%= Faker::Hacker.say_something_smart %></p>
+
+<p>Got a total of <strong><%= cookies[:headseries] %></strong> heads</p>
+<p>Got a total of <strong><%= cookies[:tailseries] %></strong> tails</p>
