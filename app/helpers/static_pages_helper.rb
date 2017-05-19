@@ -2,7 +2,7 @@ module StaticPagesHelper
 
   # Init all cookie values to defaults
   def checkforcookie
-    if cookies[:headseries].nil?
+    if cookies[:created_at].nil?
       cookies[:headseries] = 0
       cookies[:tailseries] = 0
       cookies[:lastresult] = 0
