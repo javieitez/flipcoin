@@ -1,3 +1,20 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.info {
+    background-color: black;
+    color: white;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+} 
+
+div.smallinfo {
+    font-size: 0.875em;
+    color: blue;
+    padding: 15px;
+    text-align: right;
+} 

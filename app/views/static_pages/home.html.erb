@@ -1,17 +1,23 @@
-<p><%= checkforcookie %></p>
+<meta http-equiv="refresh" content="1" />
 <p>You flipped a coin and got <strong><%= flipcoin %></strong></p>
-<hr>
 
+
+<div class="info">
 <% consecutives %>
-<% if cookies[:consmatches].to_i == 0 %>
-  <p>No consecutive results</p> 
+<% if cookies[:consmatches].to_i == 0 and cookies[:mostconsmatches].to_i == 0 %>
+  <p>No consecutive results at all</p> 
+<% elsif cookies[:consmatches].to_i == 0 %>
+  <p>Last two coins got different results. Biggest series was of 
+  <strong><%= cookies[:mostconsmatches] %></strong> consecutive matches</p>
 <% else %>
   <p>Got <strong><%= cookies[:lastresult] %></strong> for 
   <%= cookies[:consmatches] %> consecutive 
-  <%= "time".pluralize(cookies[:consmatches].to_i) %></times></p>
+  <%= "time".pluralize(cookies[:consmatches].to_i) %>. Record is 
+  <strong><%= cookies[:mostconsmatches] %></strong></p>
 <% end %>
-
-<hr>
+</div>
 
 <p>Got a total of <strong><%= cookies[:headseries] %></strong> heads</p>
 <p>Got a total of <strong><%= cookies[:tailseries] %></strong> tails</p>
+
+<div class="smallinfo"><%= checkforcookie %></div>
