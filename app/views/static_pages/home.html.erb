@@ -1,23 +1,36 @@
 <meta http-equiv="refresh" content="1" />
-<p>You flipped a coin and got <strong><%= flipcoin %></strong></p>
+<p>You flipped a coin and got <strong><%= flipcoin.upcase %></strong></p>
 
 
 <div class="info">
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice]%>: 
+    <strong><%= cookies[:mostconsmatches] %></strong></div>
+  <% end %>
 <% consecutives %>
 <% if cookies[:consmatches].to_i == 0 and cookies[:mostconsmatches].to_i == 0 %>
-  <p>No consecutive results at all</p> 
+  <p>No consecutive results yet</p> 
 <% elsif cookies[:consmatches].to_i == 0 %>
-  <p>Last two coins got different results. Biggest series was of 
-  <strong><%= cookies[:mostconsmatches] %></strong> consecutive matches</p>
+  <p>Different results for the last <%= cookies[:pingpongs] %> 
+  <%= "shot".pluralize(cookies[:pingpongs]) %>. Records are  
+  <strong><%= cookies[:mostconsmatches] %></strong> consecutive matches and 
+  <strong><%= cookies[:pingpongsrecord] %></strong> alternate flips.</p>
 <% else %>
   <p>Got <strong><%= cookies[:lastresult] %></strong> for 
   <%= cookies[:consmatches] %> consecutive 
   <%= "time".pluralize(cookies[:consmatches].to_i) %>. Record is 
-  <strong><%= cookies[:mostconsmatches] %></strong></p>
+  <strong><%= cookies[:mostconsmatches] %></strong> times.</p>
 <% end %>
 </div>
 
-<p>Got a total of <strong><%= cookies[:headseries] %></strong> heads</p>
-<p>Got a total of <strong><%= cookies[:tailseries] %></strong> tails</p>
+<p>You flipped the coin <strong><%= cookies[:totalflips] %></strong> times. 
+<ul>
+  <li><strong><%= cookies[:headseries] %></strong> heads</li> 
+  <li><strong><%= cookies[:tailseries] %></strong> tails</li>
+  <li>record of consecutive heads: <strong><%= cookies[:headsrecord] %></strong></li>
+  <li>record of consecutive tails: <strong><%= cookies[:tailsrecord] %></strong></li>
+  <li>record of alternate flips: <strong><%= cookies[:pingpongsrecord] %></strong></li>
+</ul>
+</p>
 
-<div class="smallinfo"><%= checkforcookie %></div>
+<p class="smallinfo"><%= checkforcookie %></p>
