@@ -4,22 +4,21 @@
 
 <div class="info">
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice]%>: 
-    <strong><%= cookies[:mostconsmatches] %></strong></div>
+    <div class="notice"><%= flash[:notice]%></div>
   <% end %>
 <% consecutives %>
-<% if cookies[:consmatches].to_i == 0 and cookies[:mostconsmatches].to_i == 0 %>
+<% if cookies[:consmatches].to_i == 0 and [cookies[:tailsrecord], cookies[:headsrecord]].max == 0 %>
   <p>No consecutive results yet</p> 
 <% elsif cookies[:consmatches].to_i == 0 %>
   <p>Different results for the last <%= cookies[:pingpongs] %> 
   <%= "shot".pluralize(cookies[:pingpongs]) %>. Records are  
-  <strong><%= cookies[:mostconsmatches] %></strong> consecutive matches and 
+  <strong><%= [cookies[:tailsrecord], cookies[:headsrecord]].max %></strong> consecutive matches and 
   <strong><%= cookies[:pingpongsrecord] %></strong> alternate flips.</p>
 <% else %>
   <p>Got <strong><%= cookies[:lastresult] %></strong> for 
   <%= cookies[:consmatches] %> consecutive 
   <%= "time".pluralize(cookies[:consmatches].to_i) %>. Record is 
-  <strong><%= cookies[:mostconsmatches] %></strong> times.</p>
+  <strong><%= [cookies[:tailsrecord], cookies[:headsrecord]].max %></strong> times.</p>
 <% end %>
 </div>
 

@@ -12,7 +12,6 @@ module StaticPagesHelper
       cookies[:headsrecord] = 0
       cookies[:consmatches] = 0
       cookies[:previousresult] = 0
-      cookies[:mostconsmatches] = 0
       cookies[:totalflips] = 0
       cookies[:pingpongs] = 0
       cookies[:pingpongsrecord] = 0
@@ -64,33 +63,61 @@ def increase_counter
 end
 
 def compare_matches
-  # compare to the biggest recorded match, store if bigger
-  if cookies[:consmatches].to_i > cookies[:mostconsmatches].to_i
+  if newrecord?
     flash[:notice] = "New Record on on consecutive flips"
-    cookies[:mostconsmatches] = cookies[:consmatches]
   end
 end
+
+def compare_pingpongs
+  if newpingpongrecord?
+    flash[:notice] = "New Record on alternate flips"
+    cookies[:pingpongsrecord] = cookies[:pingpongs]
+  end
+end
+
+def newpingpongrecord?
+  if cookies[:pingpongs].to_i > cookies[:pingpongsrecord].to_i \
+                              and cookies[:pingpongs].to_i > 1 
+    true
+  else
+    false
+  end
+end
+
+
+def newrecord?
+  if cookies[:consmatches].to_i > 0 and cookies[:consmatches].to_i > \
+    [cookies[:tailsrecord].to_i, cookies[:headsrecord].to_i].max
+    true
+  else
+    false
+  end
+end
+
 
 def comparetails
   if cookies[:constails].to_i > cookies[:tailsrecord].to_i
     cookies[:tailsrecord] = cookies[:constails] 
   end
-  cookies[:constails] = cookies[:constails].to_i + 1  
-  cookies[:consheads] = 0
+  # first series go from 0 to 2
+  if cookies[:constails].to_i == 0
+    cookies[:constails] = 2
+  else
+    cookies[:constails] = cookies[:constails].to_i + 1  
+    cookies[:consheads] = 0
+  end
 end
 
 def compareheads
   if cookies[:consheads].to_i > cookies[:headsrecord].to_i
     cookies[:headsrecord] = cookies[:consheads] 
   end
+  # first series go from 0 to 2
+  if cookies[:consheads].to_i == 0
+    cookies[:consheads] = 2
+  else
   cookies[:consheads] = cookies[:consheads].to_i + 1  
   cookies[:constails] = 0
-end
-
-def compare_pingpongs
-  if cookies[:pingpongs].to_i > cookies[:pingpongsrecord].to_i
-    flash[:notice] = "New Record on alternate flips"
-    cookies[:pingpongsrecord] = cookies[:pingpongs]
   end
 end
 
