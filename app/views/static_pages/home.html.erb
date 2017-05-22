@@ -1,3 +1,6 @@
+<head>
+    <title>flip the coin</title>
+</head>
 <meta http-equiv="refresh" content="1" />
 <p>You flipped a coin and got <strong><%= flipcoin.upcase %></strong></p>
 
@@ -7,18 +10,18 @@
     <div class="notice"><%= flash[:notice]%></div>
   <% end %>
 <% consecutives %>
-<% if cookies[:consmatches].to_i == 0 and [cookies[:tailsrecord], cookies[:headsrecord]].max == 0 %>
+<% if cookies[:consmatches].to_i == 0 and \
+                      [cookies[:tailsrecord], cookies[:headsrecord]].max == 0 %>
   <p>No consecutive results yet</p> 
+<% elsif cookies[:pingpongs] == 1  %>
+  <p>Series ended. Start over.</p>
 <% elsif cookies[:consmatches].to_i == 0 %>
   <p>Different results for the last <%= cookies[:pingpongs] %> 
-  <%= "shot".pluralize(cookies[:pingpongs]) %>. Records are  
-  <strong><%= [cookies[:tailsrecord], cookies[:headsrecord]].max %></strong> consecutive matches and 
-  <strong><%= cookies[:pingpongsrecord] %></strong> alternate flips.</p>
+  <%= "shot".pluralize(cookies[:pingpongs]) %>.</p>
 <% else %>
   <p>Got <strong><%= cookies[:lastresult] %></strong> for 
   <%= cookies[:consmatches] %> consecutive 
-  <%= "time".pluralize(cookies[:consmatches].to_i) %>. Record is 
-  <strong><%= [cookies[:tailsrecord], cookies[:headsrecord]].max %></strong> times.</p>
+  <%= "time".pluralize(cookies[:consmatches].to_i) %>.</p>
 <% end %>
 </div>
 
