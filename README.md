@@ -1,24 +1,11 @@
-# README
+# Flip a coin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Experimental Toy App. A coin is flipped every second and the results 
+are tracked using a series of  variables stored in cookies. 
 
-Things you may want to cover:
+All counters are per-user and are reset when the 
+browser session is closed.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Just an exercise on learning Ruby on Rails. Made on Rails 5.0.1, 
+but it doesn't have serious dependencies or use a DB at all, so it should
+run on almost any rails version.
