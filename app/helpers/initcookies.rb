@@ -4,12 +4,12 @@ def checkforcookie
     cookies[:totalheads] = 0
     cookies[:totaltails] = 0
     cookies[:currentresult] = 0
-    cookies[:consheads] = 1
-    cookies[:constails] = 1
+    cookies[:consheads] = 0
+    cookies[:constails] = 0
     cookies[:tailsrecord] = 0
     cookies[:headsrecord] = 0
     cookies[:previousresult] = 0
-    cookies[:totalflips] = 1
+    cookies[:totalflips] = 0
     cookies[:pingpongs] = 0
     cookies[:pingpongsrecord] = 0
     cookies[:created_at] = Time.now
