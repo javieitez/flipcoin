@@ -57,7 +57,7 @@ end
 def newrecord?
   @cons = [cookies[:constails].to_i, cookies[:consheads].to_i].max
   @rec = [cookies[:tailsrecord].to_i, cookies[:headsrecord].to_i].max
-  if @rec > 0 and @cons > @rec
+  if @cons > @rec
     true
   else
     false
@@ -65,21 +65,17 @@ def newrecord?
 end
 
 def compareheads
-  @cons = cookies[:consheads].to_i
-  @rec = cookies[:headsrecord].to_i
-  cookies[:constails] = 0 # reset tails series
-  if cookies[:consheads].to_i > @rec #new record?
-    cookies[:headsrecord] = cookies[:consheads] # write the cookie, not the var
+  if cookies[:consheads].to_i > cookies[:headsrecord].to_i #new record?
+    cookies[:headsrecord] = cookies[:consheads]
   end
+  cookies[:constails] = 0 # reset tails series
 end
 
 def comparetails
-  @cons = cookies[:constails].to_i
-  @rec = cookies[:tailsrecord].to_i
-  cookies[:consheads] = 0 # reset tails series
-  if cookies[:constails].to_i > @rec #new record?
-    cookies[:tailsrecord] = cookies[:constails] # write the cookie, not the var
+  if cookies[:constails].to_i > cookies[:tailsrecord].to_i #new record?
+    cookies[:tailsrecord] = cookies[:constails]
   end
+  cookies[:consheads] = 0 # reset heads series
 end
 
 def compare_pingpongsrecord
