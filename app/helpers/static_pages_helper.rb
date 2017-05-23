@@ -19,19 +19,19 @@ def consecutives # keep track of consecutive matches
   @current = cookies[:currentresult]
   @prev = cookies[:previousresult]
   if @current ==  @prev and @current == 'heads'
-    compareheads
     cookies[:consheads] = cookies[:consheads].to_i + 1
     check_new_high
+    compareheads
     cookies[:pingpongs] = 0
   elsif @current == @prev and @current == 'tails'
-    comparetails
     cookies[:constails] = cookies[:constails].to_i + 1
     check_new_high
+    comparetails
     cookies[:pingpongs] = 0
   else
+    cookies[:pingpongs] = cookies[:pingpongs].to_i + 1
     compare_pingpongsrecord
     cookies[:previousresult] = cookies[:currentresult]
-    cookies[:pingpongs] = cookies[:pingpongs].to_i + 1
     cookies[:consheads] = 0
     cookies[:constails] = 0
   end
@@ -53,11 +53,10 @@ def newpingpongrecord?
   end
 end
 
-
 def newrecord?
-  @cons = [cookies[:constails].to_i, cookies[:consheads].to_i].max
-  @rec = [cookies[:tailsrecord].to_i, cookies[:headsrecord].to_i].max
-  if @cons > @rec
+  if cookies[:constails].to_i > cookies[:tailsrecord].to_i
+    true
+  elsif cookies[:consheads].to_i > cookies[:headsrecord].to_i
     true
   else
     false

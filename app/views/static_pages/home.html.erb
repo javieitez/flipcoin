@@ -1,40 +1,51 @@
 <meta http-equiv="refresh" content="1" />
-<p>You flipped a coin and got <strong><%= flipcoin.upcase %></strong></p>
+
+<% if cookies[:totalflips].to_i == 0 %>
+  <p>Initilaizing values...</p><% flipcoin %>
+<% else %>
+  <p>You flipped a coin and got <strong><%= flipcoin.upcase %></strong></p>
+<% end %>
 
 
 <div class="info">
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice]%></div>
-  <% end %>
+<% end %>
 <% consecutives %>
 <% if cookies[:consmatches].to_i == 0 and \
                       [cookies[:tailsrecord].to_i, cookies[:headsrecord].to_i].max == 0 %>
-  <p>No results yet</p> 
+  <p>No results yet</p>
 <% elsif cookies[:pingpongs] == 1  %>
   <p>Series ended. Start over.</p>
-<% elsif cookies[:currentresult] = "tails" and cookies[:constails].to_i > 1 %>
-  <p>Got <strong><%= cookies[:currentresult] %></strong> for 
-  <%= cookies[:constails] %> consecutive 
-  <%= "time".pluralize(cookies[:constails].to_i) %>.</p>
-<% elsif cookies[:currentresult] = "heads" and cookies[:consheads].to_i > 1 %>
-    <p>Got <strong><%= cookies[:currentresult] %></strong> for 
-    <%= cookies[:consheads] %> consecutive 
-    <%= "time".pluralize(cookies[:consheads].to_i) %>.</p>
+<% elsif cookies[:currentresult] == "tails" and cookies[:constails].to_i > 1 %>
+  <p>Got <strong><%= cookies[:currentresult] %></strong> for
+    <%= cookies[:constails] %> consecutive
+    <%= "time".pluralize(cookies[:constails].to_i) %>.
+  </p>
+<% elsif cookies[:currentresult] == "heads" and cookies[:consheads].to_i > 1 %>
+    <p>Got <strong><%= cookies[:currentresult] %></strong> for
+      <%= cookies[:consheads] %> consecutive
+      <%= "time".pluralize(cookies[:consheads].to_i) %>.
+    </p>
 <% elsif cookies[:pingpongs] > 1  %>
   <p>Different results for the last <%= cookies[:pingpongs] %> times</p>
 <% else %>
-  <p>last was <%= cookies[:currentresult] %></p>
+  <p>got <%= cookies[:currentresult] %></p>
 <% end %>
 </div>
 
-<p>You flipped the coin <strong><%= cookies[:totalflips] %></strong> times. 
-<ul>
-  <li><strong><%= cookies[:totalheads] %></strong> heads</li> 
-  <li><strong><%= cookies[:totaltails] %></strong> tails</li>
-  <li>record of consecutive heads: <strong><%= cookies[:headsrecord] %></strong></li>
-  <li>record of consecutive tails: <strong><%= cookies[:tailsrecord] %></strong></li>
-  <li>record of alternate flips: <strong><%= cookies[:pingpongsrecord] %></strong></li>
-</ul>
-</p>
-
+<% if cookies[:totalflips].to_i < 2 %>
+  <p>Initilaizing values...</p>
+<% else %>
+  <p>You flipped the coin <strong><%= cookies[:totalflips] %></strong> times.
+    <ul>
+      <li><strong><%= cookies[:totalheads] %></strong> heads</li>
+      <li><strong><%= cookies[:totaltails] %></strong> tails</li>
+      <li>record of consecutive heads: <strong><%= cookies[:headsrecord] %></strong></li>
+      <li>record of consecutive tails: <strong><%= cookies[:tailsrecord] %></strong></li>
+      <li>record of alternate flips: <strong><%= cookies[:pingpongsrecord] %></strong></li>
+    </ul>
+  </p>
+<% end %>
 <p class="smallinfo"><%= checkforcookie %></p>
+
