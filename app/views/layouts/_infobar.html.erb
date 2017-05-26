@@ -1,0 +1,26 @@
+<div class="info">
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice]%></div>
+<% end %>
+<% consecutives %>
+<% if cookies[:consmatches].to_i == 0 and \
+                      [cookies[:tailsrecord].to_i, cookies[:headsrecord].to_i].max == 0 %>
+  <p>No results yet</p>
+<% elsif cookies[:pingpongs] == 1  %>
+  <p>Series ended. Start over.</p>
+<% elsif cookies[:currentresult] == "tails" and cookies[:constails].to_i > 1 %>
+  <p>Got <strong><%= cookies[:currentresult] %></strong> for
+    <%= cookies[:constails] %> consecutive
+    <%= "time".pluralize(cookies[:constails].to_i) %>.
+  </p>
+<% elsif cookies[:currentresult] == "heads" and cookies[:consheads].to_i > 1 %>
+    <p>Got <strong><%= cookies[:currentresult] %></strong> for
+      <%= cookies[:consheads] %> consecutive
+      <%= "time".pluralize(cookies[:consheads].to_i) %>.
+    </p>
+<% elsif cookies[:pingpongs] > 1  %>
+  <p>Different results for the last <%= cookies[:pingpongs] %> times</p>
+<% else %>
+  <p>got <%= cookies[:currentresult] %></p>
+<% end %>
+</div>

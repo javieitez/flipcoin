@@ -1,0 +1,10 @@
+<% if cookies[:totalflips].to_i == 0 %>
+  <p>
+  <% flipcoin %>
+  <div class="progress-bar progress-bar-striped active" role="progressbar" 
+  aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width:55%">
+  <p>Initilaizing values...</p></div>
+  </p>
+<% else %>
+  <p>You flipped a coin and got <strong><%= flipcoin.upcase %></strong></p>
+<% end %>
