@@ -1,2 +1,12 @@
 <h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+
+
+<p id="demo">This one reloads when you click the button</p>
+<button type="button" onclick='document.getElementById("demo").innerHTML = "<%= checkforcookie %>"'>Click this shit</button>
+
+
+
+
+<p><hr></p>
+
+<p id="demo2">This one must reload when you put a timer-based script (TBA)... <%= render 'layouts/totalflips' %></p>
