@@ -9,4 +9,14 @@
 
 <p><hr></p>
 
+
+<script langauge="javascript">
+            var counter = 0;
+            window.setInterval("refreshDiv()", 1000);
+            function refreshDiv(){
+                counter = counter + 1;
+                document.getElementById("demo2").innerHTML = "Testing " + counter;
+            }
+        </script>
+
 <p id="demo2">This one must reload when you put a timer-based script (TBA)... <%= render 'layouts/totalflips' %></p>
