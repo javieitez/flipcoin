@@ -1,39 +1,29 @@
-<script langauge="javascript">
-  function flipCoin() {
-    return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
-  }
-
-  function sumResults() {
-    if (flipResult == "heads") {
-      totalheads += 1;} 
-    else {
-      totaltails += 1;}
-  }
-
-  var counter = 0, flips = 0, totalheads = 0, totaltails = 0;
-    window.setInterval("refreshDiv()", 1000);
-      function refreshDiv(){
-      counter += 1;
-      flipResult = flipCoin();
-      sumResults();
-      document.getElementById("result").innerHTML = flipResult;
-      document.getElementById("myImage").src = '/' + flipResult + '.jpg';
-      document.getElementById("totalFlips").innerHTML = counter;
-      document.getElementById("theads").innerHTML = totalheads;
-      document.getElementById("ttails").innerHTML = totaltails;
-      }
-
+<script language="javascript">
+<%= render 'flipcoin.js' %>
+<%= render 'coinspeed.js' %>
 </script>
 
-
-
+<div class="container">
 <p>got <strong id="result">nothing yet</strong></p>
 
 <p>
 <img id="myImage" src="/nothing.jpg" style="width:100px">
 </p>
-
+<div class="container" style="background-color:#ffffcc;">
 <p>Coin has flipped <strong id="totalFlips"></strong> times</p>
-<p><strong id="theads"></strong> heads</p>
-<p><strong id="ttails"></strong> tails</p>
+<div style="background-color:#ffffe6;"><p><ul>
+<li><strong id="theads"></strong> heads</li>
+<li><strong id="ttails"></strong> tails</li>
+<li><strong id="cheads"></strong> consecutive heads, record is <strong id="rheads"></strong></li>
+<li><strong id="ctails"></strong> consecutive tails, record is <strong id="rtails"></strong></li>
+<li><strong id="calts"></strong> alternate flips, record is <strong id="ralts"></li>
+</ul></p></div></div>
 
+<p>
+<button class="btn btn-primary" onclick="incrSpeed()"> - slower</button>
+<button class="btn btn-primary" onclick="decrSpeed()">+ faster</button></p>
+
+<p>Coin is flipped every <strong id="currentspeed">1000</strong> miliseconds</p>
+</div>
+
+<%= render 'layouts/footer' %>
