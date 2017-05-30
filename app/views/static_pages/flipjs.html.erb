@@ -1,0 +1,39 @@
+<script langauge="javascript">
+  function flipCoin() {
+    return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
+  }
+
+  function sumResults() {
+    if (flipResult == "heads") {
+      totalheads += 1;} 
+    else {
+      totaltails += 1;}
+  }
+
+  var counter = 0, flips = 0, totalheads = 0, totaltails = 0;
+    window.setInterval("refreshDiv()", 1000);
+      function refreshDiv(){
+      counter += 1;
+      flipResult = flipCoin();
+      sumResults();
+      document.getElementById("result").innerHTML = flipResult;
+      document.getElementById("myImage").src = '/' + flipResult + '.jpg';
+      document.getElementById("totalFlips").innerHTML = counter;
+      document.getElementById("theads").innerHTML = totalheads;
+      document.getElementById("ttails").innerHTML = totaltails;
+      }
+
+</script>
+
+
+
+<p>got <strong id="result">nothing yet</strong></p>
+
+<p>
+<img id="myImage" src="/nothing.jpg" style="width:100px">
+</p>
+
+<p>Coin has flipped <strong id="totalFlips"></strong> times</p>
+<p><strong id="theads"></strong> heads</p>
+<p><strong id="ttails"></strong> tails</p>
+

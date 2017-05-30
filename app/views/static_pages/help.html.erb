@@ -1,22 +1,27 @@
-<h1>StaticPages#help</h1>
+<h3>Some javascript drafts</h3>
 
 
-<p id="demo">This one reloads when you click the button</p>
-<button type="button" onclick='document.getElementById("demo").innerHTML = "<%= checkforcookie %>"'>Click this shit</button>
+<p id="demo">This space is refilled with other stuff when you click the button</p>
+
+<p><button type="button" class="btn btn-primary" 
+onclick='document.getElementById("demo").innerHTML = "<%= checkforcookie %>"'>
+    call a method</button>
+
+<button type="button" class="btn btn-primary"
+onclick="document.getElementById('demo').innerHTML = Date()">
+puts Date and Time.</button>
+
+<button type="button" class="btn btn-primary"
+onclick="document.getElementById('demo').innerHTML = document.cookie">
+Show all cookies.</button></p>
+
+<p>
+<img id="myImage" src="/heads.jpg" style="width:100px">
+</p>
+<button class="btn btn-primary" onclick="document.getElementById('myImage').src='/tails.jpg'">tails</button>
+<button class="btn btn-primary" onclick="document.getElementById('myImage').src='/heads.jpg'">heads</button>
 
 
 
 
 <p><hr></p>
-
-
-<script langauge="javascript">
-            var counter = 0;
-            window.setInterval("refreshDiv()", 1000);
-            function refreshDiv(){
-                counter = counter + 1;
-                document.getElementById("demo2").innerHTML = "Testing " + counter;
-            }
-        </script>
-
-<p id="demo2">This one must reload when you put a timer-based script (TBA)... <%= render 'layouts/totalflips' %></p>
