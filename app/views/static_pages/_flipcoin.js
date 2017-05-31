@@ -1,7 +1,16 @@
+/*global Image*/
 var counter = 0, totalheads = 0, totaltails = 0; 
 var consheads = 0, constails= 0, flipResult = "", lastResult = "" ;
 var headsRecord = 0, tailsRecord = 0, consAlts = 0, altRecord = 0 ;
 var flipSpeed = 1000;
+
+// images are preloaded for better performance. 
+var heads_image = new Image();
+heads_image.src = '/heads.jpg';
+var tails_image = new Image();
+tails_image.src = '/tails.jpg';
+
+
 
   //first declare all the functions 
   function flipCoin() {
@@ -17,16 +26,16 @@ var flipSpeed = 1000;
   
   function sumConsecutives() {
     if (flipResult == lastResult && flipResult == 'heads') {
-      constails = 0
-      consAlts = 0
+      constails = 0;
+      consAlts = 0;
       consheads += 1 } 
     else if (flipResult == lastResult && flipResult == 'tails') {
-      consheads = 0
-      consAlts = 0
+      consheads = 0;
+      consAlts = 0;
       constails += 1 }
     else {
-      consheads = 0 
-      constails = 0
+      consheads = 0; 
+      constails = 0;
       consAlts += 1 }
   }
   
@@ -36,14 +45,11 @@ var flipSpeed = 1000;
     else if (constails > tailsRecord) {
       tailsRecord = constails  } 
     else if (consAlts > altRecord ){
-      altRecord = consAlts
+      altRecord = consAlts;
     }
   }
   
-  
-  // start flipping coins and drawing results
-  window.setInterval("refreshDiv()", flipSpeed);
-    function refreshDiv(){
+  function refreshDiv(){
     counter += 1;
     flipResult = flipCoin();
     sumResults();
@@ -60,5 +66,45 @@ var flipSpeed = 1000;
     document.getElementById("ralts").innerHTML = altRecord;
     document.getElementById("calts").innerHTML = consAlts;
     lastResult = flipResult;
+    printSpeed();
     consRecord();
   }
+
+  function speedLimit() {
+    if (flipSpeed > 10000 ) {
+      flipSpeed = 9999;
+    } else if (flipSpeed < 10) {
+        flipSpeed = 11;
+    }
+  }
+
+  function incrSpeed(){
+    flipSpeed += 100;
+    printSpeed();
+  }
+
+  function decrSpeed(){
+    flipSpeed -= 100;
+    printSpeed();
+  }
+
+  function printSpeed(){
+    document.getElementById('currentspeed').innerHTML = flipSpeed;
+    speedLimit();
+  }
+
+  function timeoutBang() {
+    setTimeout(function () {
+      refreshDiv();
+        timeoutBang();
+    }, flipSpeed);
+  }
+
+
+// ***********************************************
+//         ALL SHIT DECLARED!!
+// ***********************************************
+// start flipping coins and drawing results
+
+timeoutBang();
+
