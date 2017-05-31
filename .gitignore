@@ -16,6 +16,8 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+# Ignore prod precompiled cache
+public/assets/*
 
 # Ignore Byebug command history file.
 .byebug_history
