@@ -3,15 +3,14 @@
 var counter = 0, totalheads = 0, totaltails = 0; 
 var consheads = 0, constails= 0, flipResult = "", lastResult = "" ;
 var headsRecord = 0, tailsRecord = 0, consAlts = 0, altRecord = 0 ;
-var flipSpeed = 1000;
-
+var flipSpeed = 500;
 
 
 // vars are initialized inside a function for later reuse
-function initAllVars() {
-  var counter = 0, totalheads = 0, totaltails = 0; 
-  var consheads = 0, constails= 0, flipResult = "", lastResult = "" ;
-  var headsRecord = 0, tailsRecord = 0, consAlts = 0, altRecord = 0 ;
+function startOver() {
+  counter = 0, totalheads = 0, totaltails = 0; 
+  consheads = 0, constails= 0, flipResult = "", lastResult = "" ;
+  headsRecord = 0, tailsRecord = 0, consAlts = 0, altRecord = 0 ;
 }
 
 // images are preloaded for better performance. 
@@ -126,5 +125,5 @@ tails_image.src = '/tails.jpg';
     }, flipSpeed);
   }
 
-
-
+// and, finally, call it
+timeoutBang()
