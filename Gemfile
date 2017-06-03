@@ -8,7 +8,7 @@ gem 'coffee-rails', '4.2.1'
 gem 'jquery-rails', '4.1.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
-gem 'faker',        '1.6.6' 
+gem 'faker'
 gem 'bootstrap-sass'
 
 group :development, :test do
