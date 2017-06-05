@@ -1,1 +1,17 @@
-<%= Faker::ChuckNorris.fact %>
+<div class="container" style="background-color:#ffffcc;">
+
+<p>
+<div id="thesentence">A random sentence will be loaded here</div>
+</p>
+</div>
+
+<script language="javascript">
+function loadSentence(){
+  document.getElementById("thesentence").innerHTML = '<%= Faker::ChuckNorris.fact %>';
+}
+</script>
+
+<p>
+<button class="btn btn-primary" onclick="loadSentence()">
+<span class="glyphicon glyphicon-play"></span> Go!</button>
+</p>
